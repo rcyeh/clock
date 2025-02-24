@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Digital Clock</title>
+<link href="style.css" rel="stylesheet" />
+</head>
+<body onload="startTime()">
+  <div id="clock"></div>
+
+  <script>
+    function startTime() {
+      const today = new Date();
+      let hours = today.getHours();
+      let minutes = today.getMinutes();
+      const seconds = today.getSeconds();
+      const milliseconds = today.getMilliseconds();
+
+      minutes = checkTime(minutes);
+      // seconds = checkTime(seconds);
+      document.getElementById('clock').textContent = hours + ":" + minutes; // + ":" + seconds;
+      setTimeout(startTime, 1000 * (60 - seconds) - milliseconds);
+    }
+
+    function checkTime(i) {
+      if (i < 10) {i = "0" + i};
+      return i;
+    }
+  </script>
+</body>
+</html>
